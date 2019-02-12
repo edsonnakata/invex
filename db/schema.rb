@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_02_07_163140) do
 
-  create_table "artefatos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "artefatos", force: :cascade do |t|
     t.bigint "usuario_id"
     t.bigint "historia_id"
     t.string "titulo"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2019_02_07_163140) do
     t.index ["usuario_id"], name: "index_artefatos_on_usuario_id"
   end
 
-  create_table "capitulos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "capitulos", force: :cascade do |t|
     t.string "save"
     t.bigint "usuarios_id"
     t.bigint "historia_id"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2019_02_07_163140) do
     t.index ["usuarios_id"], name: "index_capitulos_on_usuarios_id"
   end
 
-  create_table "historia", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "historias", force: :cascade do |t|
     t.bigint "usuario_id"
     t.string "titulo"
     t.string "nome"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2019_02_07_163140) do
     t.index ["usuario_id"], name: "index_historia_on_usuario_id"
   end
 
-  create_table "roteiros", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "roteiros", force: :cascade do |t|
     t.bigint "usuario_id"
     t.bigint "historia_id"
     t.string "titulo"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2019_02_07_163140) do
     t.index ["usuario_id"], name: "index_roteiros_on_usuario_id"
   end
 
-  create_table "usuarios", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "usuarios", force: :cascade do |t|
     t.string "nome"
     t.string "email"
     t.string "password"
@@ -64,6 +64,6 @@ ActiveRecord::Schema.define(version: 2019_02_07_163140) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "capitulos", "historia", column: "historia_id"
+  add_foreign_key "capitulos", "historias", column: "historia_id"
   add_foreign_key "capitulos", "usuarios", column: "usuarios_id"
 end
